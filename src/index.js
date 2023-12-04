@@ -3,13 +3,75 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Home from './Pages/Home';
+import SignIn from './Pages/Signin';
+import SignUp from './Pages/Signup';
+import AboutUs from './Pages/Aboutus';
+import Navigation from './Pages/Navigation';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+ 
 
+//*********************** Main Code **************************
+  /*
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+ 
+
+reportWebVitals();
+
+*/
+//-------------------------------------------------------
+
+
+//*********************** React Router **************************
+  
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<Navigation/>}>
+        <Route index element={<Home />}></Route>
+        <Route path='singin' element={< SignIn />} />
+        <Route path='singup' element={<SignUp />} />
+        <Route path='aboutus' element={<AboutUs />} />
+      </Route>
+    </Routes>
+   </BrowserRouter>
+);
+ 
+
+reportWebVitals();
+
+
+
+//***********************Passing data between components **************************
+  
+/*
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App  color="red" size="24" clickEvent={()=>
+    {
+      console.log("click this button")
+
+    }}/>
+  </React.StrictMode>
+);
+
+reportWebVitals();
+ */
+
+//------------------------------------------------------------------
 
 
 /********************************React Component Life Cycle***************************/
 
-
-
+/*
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -26,9 +88,9 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
+*/
 
 //-------------------------------------------------------------------------------------
-
 
 
 //***********************PROP & State USE event() **************************
@@ -51,7 +113,6 @@ reportWebVitals();
 
 //------------------------------------------------------------------
  
-
 
 //****************PROP USE event() with Alert function components/CLASS components **************************
 

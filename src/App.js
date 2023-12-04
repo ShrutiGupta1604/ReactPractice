@@ -1,5 +1,8 @@
- import './App.css';
- import React from 'react';
+ import { type } from '@testing-library/user-event/dist/type';
+import './App.css';
+import React, {useState, useEffect, createContext, useContext, useRef, useReducer, Component } from 'react';
+import { render } from '@testing-library/react';
+
 
  //*********Org.Prog.******  
 /* 
@@ -12,7 +15,416 @@ function App() {
 export default App;
 
 */
-//-----------------------------------------------
+//----------------------------------------------
+
+
+// export default function App()
+// {
+//   function calculation(Variable1,Variable2)
+//   {
+//     const add=Variable1+Variable2
+    
+//     const sub=Variable1-Variable2
+    
+//     const multi=Variable1*Variable2
+    
+//     const division=Variable2/Variable1
+//     return[add,sub,multi,division]
+//   }
+//   const[add,sub,multi,division]=calculation(5,8)
+//   console.log ("Addition"+add)
+//   console.log ("sub"+sub)
+//   console.log ("multi"+multi)
+//   console.log ("division"+division)
+// }
+
+
+// const myObject={
+//   creta:"123",
+//    maruti:"123334",
+//    venue:"12M",
+//    year:"1233",
+//    color:"red",
+//    variation:
+//    {
+//     data1:"Data1",
+//     data2:"Data2",
+//     data3:"Data3"
+//    },
+// }
+
+// function printObject({venue,year,color,variation:{data2}})
+// {
+//   console.log(" details:"+venue+","+year+","+color+","+data2)
+// }
+// printObject(myObject)
+
+  
+//-----------------------------------------------------
+// export default function App()
+// { 
+    
+// const  V =["car", "Thar", " maruti" ,"home"]
+// const cv= V[0]
+//  const[,car,thar,]= V
+// return ( 
+
+//   //console.log(cv)
+//   console.log(thar)
+//   console.log(car)
+  
+// );
+// }
+  
+
+
+
+
+//-----------------------------------
+
+//-------------------- Hooks-useReducer solution--------------------------
+ /*
+var initialTodo =[
+  {
+    id: 1,
+    text: "Todo 1",
+    completed: false,
+  },
+  {
+    id: 2,
+    text: "Todo 2",
+    completed: false,
+  }
+  
+  ]
+
+const reducer =(state, action)=>
+{
+  switch (action.type)
+{
+case "COMPLETE":
+return state.map((todo) =>
+{
+        if (todo.id === action.id)
+        {
+        return { ...todo, complete: !todo.complete };
+        }
+        else
+        {
+        return todo;
+        }
+      });
+      default:
+      return state;
+    }
+  };
+
+
+  function App()
+  {
+
+    const [todo,dispatch]= useReducer(reducer,initialTodo);
+    const handleComplete = (todo) =>
+  {
+    dispatch({type: "COMPLETE", id: todo.id});
+  };
+  console.log(todo)
+ 
+ return  <> 
+  <div>
+    {todo.map((todo)=>
+    (
+    <label>
+      <input
+      type='checkbox' checked={todo.completed} onChange={()=> handleComplete(todo)} />
+      {todo.text}
+      </label>
+      ))} 
+    </div>
+    </>
+       
+    }
+  
+  export default App;
+  
+*/
+///--------------------------------------------
+
+// //-------------------- Hooks-useReducer prob. --------------------------
+ 
+// var initialTodo =[
+// {
+//   id: 1,
+//   text: "Todo 1",
+//   completed: false,
+// },
+// {
+//   id: 2,
+//   text: "Todo 2",
+//   completed: false,
+// }
+
+// ]
+// function App()
+// {
+//   const [todo, setTodo] = useState([])
+//   if(todo.length === 0)
+//   {
+//     setTodo(initialTodo)
+//   }
+//   const handleComplete = (todoTemp) =>
+//   {
+//     setTodo(todo.map((todoListItem) =>
+//     {
+//       if(todoListItem.id == todoTemp.id)
+//       {
+//         return { ...todoListItem, completed: !todoTemp.completed}
+//       }
+//       else
+//       {
+//         return todoListItem
+//       }
+//     }))
+//   }
+//   console.log(todo)
+
+  
+
+// return  <> 
+// <div>
+//   {todo.map((todo)=>
+//   (
+//   <label>
+//     <input
+//     type='checkbox' checked={todo.completed} onChange={()=> handleComplete(todo)} />
+//     {todo.text}
+//     </label>
+//     ))} 
+//   </div>
+//   </>
+     
+//   }
+
+// export default App;
+
+
+ //-------------------- Hooks-useRef 2nd prob. --------------------------
+/*
+
+// function App()
+// {
+
+
+//   const [inputValue , setInputValue ] = useState("");
+//  const previousInputValue = useRef("");
+//  useEffect(() => {
+//  previousInputValue .current = inputValue ;
+//  }, [inputValue ]);
+
+
+//  return (
+//  <>
+//  <input type="text" value={inputValue }
+//  onChange={(e) => setInputValue (e.target.value)}
+//  />
+//  <h2>Current Value: {inputValue }</h2>
+//  <h2>Previous Value: {previousInputValue .current}</h2>
+//  </>
+//  );
+
+
+// }
+// export default App;
+    
+//-------------------- Hooks-useRef 1st prob. --------------------------
+ 
+// function App()
+// {
+//   const inputElement = useRef();
+// function getFocus()
+// {
+//   //let focus= document.getElementById("myInput")
+//   inputElement.current.focus();
+// }   
+
+// return (
+//   <>
+//   <input id ='myInput' type='text' ref={inputElement}></input>
+
+//   <button onClick={()=>getFocus()}>clicl me</button>
+
+//   </>
+// );
+
+// }
+
+// export default App;
+
+*/
+//----------------------------------------------
+ 
+//----------------------React Router------------------------
+
+
+
+
+
+
+
+
+
+
+
+//----------------------------------------------
+
+//---------------------React Forms-------------------------
+
+/* 
+export default function App()
+{
+  function handleSubmit()
+  {
+    console.log("handleSubmit function  call")
+  } 
+
+    return(
+      <form onSubmit={handleSubmit()}>
+        <h1>My React Registration form </h1>
+        <label>
+          Email:<input type="email" placeholder='Enter Email'required></input>
+        </label>
+        <br></br>
+        <label>
+        Password:<input type="password" placeholder='Enter Password' required></input>
+        </label>
+        <br></br>
+        <button>Submit </button>
+      </form>
+    )
+  
+}
+
+*/
+//----------------------------------------------
+
+ 
+//---------------------Passing data between components--------------------------
+
+//--------------------------From child to parent  using props----------------------
+ 
+/*
+class InnerComponent extends React.Component        // Child Component
+{
+  constructor(props)
+  { 
+    super(props) 
+  }
+
+  sendData=()=>
+  {
+    const text = document.getElementById("textMessage").value 
+    console.log("Data send to a parent is :" +text    )
+     this.props.parentCallBack(text)
+  }
+
+  render()
+  {
+    return(
+    <div>
+      <input type='text' placeholder='Enter Message for parent' id='textMessage' />
+      <button onClick={()=>this.sendData()}>Send to parent </button>
+    </div>
+    )
+
+  }
+}
+
+
+class App extends React.Component       // parent Component
+{
+  state ={message:"This is from parent"}
+  parentCallBackFunction = (text) =>
+  {
+    console.log("Data in parent :" +text)
+    this.setState({message:text})
+
+  }
+
+  render()
+  {
+    return(
+  <div>
+    <InnerComponent  parentCallBack={this.parentCallBackFunction}/>
+    <div>Data from Child :{this.state.message}</div>
+  </div>
+    )
+  }
+}
+
+export default App;
+
+*/
+// //--------------------------From parent to child using props----------------------
+ 
+// class InnerComponent extends React.Component  // InnerComponent is child of  App parent component
+// {
+//   constructor(props)
+//   {
+//     super(props)
+
+//   }
+//   render()
+//   { 
+//   const style= {color: this.props.color}
+//     return (
+//     <div> 
+//      <div> This is a InnerComponent </div>
+//       child Says: 
+//       <span style={style}>{this.props.name}</span>
+    
+//     </div>
+//     )
+//   }
+// }
+ 
+// class App extends React.Component  // App is parent component
+// {
+//   state={ childColor:"black" , name :"shree" }
+
+// changeColor=()=>
+//   {
+//     const colorName =document.getElementById("colorText").value
+//     this.setState({childColor:colorName})
+
+//   } 
+
+// changeName=()=>
+//   {
+//     console.log("hii");
+//     const name = document.getElementById("nameText").value
+//     this.setState({name:name})
+
+//   } 
+
+//   render()
+//   {
+//     return (
+//     <div>
+//       <div> This is a parent Component </div>
+//       <br/>
+//       color<input type='text' placeholder='Enter Color ' onChange={this.changeColor} id ="colorText"/>  
+//       <br/>
+//        Name <input type='text' placeholder='Enter Color '  onChange={this.changeName} id ="nameText"/> 
+//        <InnerComponent color= {this.state.childColor} name= {this.state.name} /> 
+//     </div>
+//   );
+//   }
+// }
+// export default App;
+
+
+// //------------------------------------------------------------------------------------------------------
+
 
 //**************************************React Component Life Cycle********************************/
 
@@ -269,7 +681,7 @@ export default App;
 
 //************************************PROPS USEs***********************************
  
-/* //----------Examples1 ROP SIMPLE COLOR USE-------------
+/* //----------Examples1 PROP SIMPLE COLOR USE-------------
 
 function App(props){
   console.log(props.color)
@@ -980,3 +1392,4 @@ export default App;
 
 */
 //-----------------------------------------------
+ 
