@@ -2,7 +2,7 @@ import { type } from '@testing-library/user-event/dist/type';
 import './App.css';
 //import React, {useState, useEffect, createContext, useContext, useRef, useReducer, Component } from 'react';
 //import { render } from '@testing-library/react';
-import React, {useState,useEffect} from 'react';
+import React, {useState,useEffect,useContext, createContext} from 'react';
 
 
  //*********Org.Prog.******  
@@ -265,22 +265,109 @@ return state.map((todo) =>
 //---------------------- HOOKS------------------------
 
 
-//---------------useContext-------------
+//---------------HOOKS-useContext-------------
 
 
+//---------------HOOKS-useContext- 1st problem solution-------------
+ 
+ 
+const UserContext =createContext()
+
+function App(){
+  const [user,setUser]=useState("Shruti");
+  return(
+    <>
+    <UserContext.Provider value={user}>
+      <h1>{'Hello ${user}!'}</h1>
+      <Component2 user={user}></Component2>
+    </UserContext.Provider>
+    </>
+  );
+}
+function Component2(){
+  return(
+    <>
+    <h1>'Component2'</h1> 
+    <Component3/>
+    </>
+  );
+}
+function Component3(){ 
+  return(
+    <>
+    <h1>Component2</h1> 
+    <Component4/>
+    </>
+  );
+}  
+function Component4(){ 
+  const useRef = useContext(UserContext)
+  return(
+    <>
+    <h1>Component4</h1>  
+    <h2>{'Hello${useRef} again!'}</h2>  
+
+    <Component3 />
+    </>
+  );
+}
+
+export default App;
+
+//----------------------------------------------
 
 
+//---------------HOOKS-useContext- 1st problem-------------
 
+/*
 
+function App(){
+  const [user,setUser]=useState("Shruti");
+  return(
+    <>
+    <h1>{'Hello ${user}!'}</h1> 
+    <Component2 user={user}></Component2>
+    </>
+  );
+}
+function Component2({user}){
+  return(
+    <>
+    <h1>'Component2'</h1> 
+    <Component3 user={user}/>
+    </>
+  );
+}
+function Component3({user}){ 
+  return(
+    <>
+    <h1>Component2</h1> 
+    <Component4 user={user}/>
+    </>
+  );
+}  
+function Component4({user}){ 
+  return(
+    <>
+    <h1>Component4</h1>  
+    <h2>{'Hello${user} again!'}</h2>  
 
+    <Component3 user={user}/>
+    </>
+  );
+}
+
+export default App;
+
+*/
 
 //----------------------------------------------
 
 
 
-//---------------useEffect-------------
+//---------------HOOKS-useEffect-------------
 
-//*************useEffect Example 2************** 
+//*************HOOKS-useEffect Example 2************** 
 
 /*
 
@@ -333,7 +420,7 @@ export default App;
 
 
 
-//*************useEffect Example 1************** 
+//*************HOOKS-useEffect Example 1************** 
 
 /*
 
@@ -383,7 +470,7 @@ export default App;
 
 //----------------------------------------------
 
-//---------------useState-------------
+//---------------HOOKS-useState-------------
 
 /*
 
