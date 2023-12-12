@@ -301,11 +301,11 @@ function Component3(){
   );
 }  
 function Component4(){ 
-  const useRef = useContext(UserContext)
+  const user = useContext(UserContext)
   return(
     <>
     <h1>Component4</h1>  
-    <h2>{'Hello${useRef} again!'}</h2>  
+    <h2>{'Hello${user} again!'}</h2>  
 
     <Component3 />
     </>
