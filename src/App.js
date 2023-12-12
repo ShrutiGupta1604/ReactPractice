@@ -2,7 +2,7 @@ import { type } from '@testing-library/user-event/dist/type';
 import './App.css';
 //import React, {useState, useEffect, createContext, useContext, useRef, useReducer, Component } from 'react';
 //import { render } from '@testing-library/react';
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 
 
  //*********Org.Prog.******  
@@ -264,7 +264,128 @@ return state.map((todo) =>
 
 //---------------------- HOOKS------------------------
 
+
+//---------------useContext-------------
+
+
+
+
+
+
+
+
+//----------------------------------------------
+
+
+
+//---------------useEffect-------------
+
+//*************useEffect Example 2************** 
+
+/*
+
+function App()
+{
+  var [count,setCount]=useState(0)
+  var [student, setStudent]=useState(
+    {
+      name:'Shruti',
+      rollNumber:123, 
+    }
+  );
+
+  var updateData=()=>
+  {
+    console.log("updateData")
+    console.log(student)
+    setStudent(student=>
+      {
+        return{...student,name:"Shruti Gupta" }  
+      });
+      setCount=1;
+     
+  } 
+  useEffect(() => {
+    setTimeout(() =>                   
+    { 
+      console.log("this is a UseEfect triggerred now")
+       
+    }, 4000);
+    }, count );   
+
+
+
+  return(
+    <div>
+      <div>THis is my Name:{student.name}</div>
+    <div>THis is my RollNumber: {student.rollNumber}</div> 
+    <button onClick={()=>updateData()}>Update Data</button>
+    </div>
+  )
+
+}
+
+export default App;
+
+*/
+
+//----------------------------------------------
+
+
+
+//*************useEffect Example 1************** 
+
+/*
+
+function App()
+{
+  const[student, setStudent]=useState(
+    {
+      name:'Shruti',
+      rollNumber:123, 
+    }
+  );
+
+  var updateData=()=>
+  {
+    console.log("updateData")
+     
+     
+  }
+//********useEffect executes on each render, if the second parameter is not passed at all.**************
+
+  useEffect(() => {
+    setTimeout(() =>                    //runs on every render when we no use <dependency>
+    { 
+      console.log("this is a UseEfect triggerred now")
+      setStudent(student=>
+        {
+          return{...student,name:"Shruti Gupta" }  
+        }) 
+    }, 4000);
+    },[] );             //[] is 2nd parameter dependency
+
+
+
+  return(
+    <div>
+      <div>THis is my Name:{student.name}</div>
+    <div>THis is my RollNumber: {student.rollNumber}</div> 
+    <button onClick={()=>updateData()}>Update Data</button>
+    </div>
+  )
+
+}
+
+export default App;
+
+*/
+
+//----------------------------------------------
+
 //---------------useState-------------
+
+/*
 
 function App()
 {
@@ -281,11 +402,11 @@ function App()
   {
     console.log("updateData")
     console.log(student)
-    //setStudent({name:"Shree"}) //only change name nd other data blank
+    //setStudent({name:"Shree"}) //only change name nd other data blank that means all data is overwrite 
      
     setStudent(student=>
       {
-        return{...student,name:"Shruti Gupta",rollNumber:"12345674" , contact:9985789440186,} //{...} oprator se all data update hoga
+        return{...student,name:"Shruti Gupta",rollNumber:"12345674" , contact:9985789440186,} //{...} oprator se all data overwrite nhi hoga
       })
      console.log(student)
   }
@@ -303,6 +424,9 @@ function App()
 }
 
 export default App;
+
+*/
+
 //----------------------Styling in React------------------------
 
 //--------------------CSS Modules-----------------------
