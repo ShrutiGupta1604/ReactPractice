@@ -25,7 +25,8 @@ function   Navigation()
                     </li>
                 </ul>
             </nav>
-            <Outlet /> 
+            <Outlet />        
+            {/* outlet= automeatic yha main page load krne k liye h*/}
         </div>
     )
 }

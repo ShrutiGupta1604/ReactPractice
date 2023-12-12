@@ -1,7 +1,8 @@
- import { type } from '@testing-library/user-event/dist/type';
+import { type } from '@testing-library/user-event/dist/type';
 import './App.css';
-import React, {useState, useEffect, createContext, useContext, useRef, useReducer, Component } from 'react';
-import { render } from '@testing-library/react';
+//import React, {useState, useEffect, createContext, useContext, useRef, useReducer, Component } from 'react';
+//import { render } from '@testing-library/react';
+import React, {useState} from 'react';
 
 
  //*********Org.Prog.******  
@@ -76,10 +77,7 @@ export default App;
 // );
 // }
   
-
-
-
-
+ 
 //-----------------------------------
 
 //-------------------- Hooks-useReducer solution--------------------------
@@ -263,18 +261,91 @@ return state.map((todo) =>
 */
 //----------------------------------------------
  
-//----------------------React Router------------------------
+
+//---------------------- HOOKS------------------------
+
+//---------------useState-------------
+
+function App()
+{
+  const[student, setStudent]=useState(
+    {
+      name:'Shruti',
+      rollNumber:123,
+      contact:998866443301,
+      address:"251, indore"
+    }
+  );
+
+  var updateData=()=>
+  {
+    console.log("updateData")
+    console.log(student)
+    //setStudent({name:"Shree"}) //only change name nd other data blank
+     
+    setStudent(student=>
+      {
+        return{...student,name:"Shruti Gupta",rollNumber:"12345674" , contact:9985789440186,} //{...} oprator se all data update hoga
+      })
+     console.log(student)
+  }
+
+  return(
+    <div>
+      <div>THis is my Name:{student.name}</div>
+    <div>THis is my RollNumber: {student.rollNumber}</div> 
+    <div>THis is my Contact: {student.contact}</div>
+    <div>THis is my Address: {student.address}</div>
+    <button onClick={()=>updateData()}>Update Data</button>
+    </div>
+  )
+
+}
+
+export default App;
+//----------------------Styling in React------------------------
+
+//--------------------CSS Modules-----------------------
+
+//-------------------------
+//--------------------CSS stylesheets-----------------------
+
+/* create css file and import css file  */
+
+//----------------------------------------------
 
 
+//---------------------- Inline styling-----------------------
 
+//---------- Example type 1st-----------------------
 
+/*
+export default function App()
+{
+  return(
+    <h1 style={{color: "red" , backgroundColor: "yellow"}}> Example  Inline  Style! </h1>
+  )
+}
+*/
 
+//************************************** 
 
+//---------- Example type 1st-----------------------
 
+/*
+export default function App()
+{
+  const styleObj={
+    color:"red",
+    backgroundColor:"blue",
+    padding:"10px"
+  }
+  return(
+    <h1 style={styleObj}> 2nd type Example  Inline  Style! </h1>
+  )
+}
 
-
-
-
+*/
 //----------------------------------------------
 
 //---------------------React Forms-------------------------

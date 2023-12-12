@@ -12,7 +12,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
  
 
 //*********************** Main Code **************************
-  /*
+ 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,12 +24,12 @@ root.render(
 
 reportWebVitals();
 
-*/
+ 
 //-------------------------------------------------------
 
 
 //*********************** React Router **************************
-  
+ /* 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -47,7 +47,7 @@ root.render(
 
 reportWebVitals();
 
-
+*/
 
 //***********************Passing data between components **************************
   
