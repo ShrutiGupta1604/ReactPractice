@@ -1,21 +1,22 @@
 import { type } from '@testing-library/user-event/dist/type';
 import './App.css';
-//import React, {useState, useEffect, createContext, useContext, useRef, useReducer, Component } from 'react';
-//import { render } from '@testing-library/react';
-import React, {useState,useEffect,useContext, createContext} from 'react';
-
+import React, {useState, useEffect, createContext, useContext, useRef, useReducer, Component } from 'react';
+import { render } from '@testing-library/react';
+  
 
  //*********Org.Prog.******  
-/* 
-function App() {
+/*
+function App() 
+{
   return (
     <div className="App">
+    <h1>Hello React</h1>
     </div>  
   );
 }
 export default App;
-
 */
+
 //----------------------------------------------
 
 
@@ -234,29 +235,29 @@ return state.map((todo) =>
 // }
 // export default App;
     
-//-------------------- Hooks-useRef 1st prob. --------------------------
+//-------------------- Hooks-useRef 1st prob. - Counting renders without re-render infinite loop --------------------------
  
-// function App()
-// {
-//   const inputElement = useRef();
-// function getFocus()
-// {
-//   //let focus= document.getElementById("myInput")
-//   inputElement.current.focus();
-// }   
+function App()
+{
+  const inputElement = useRef();
+function getFocus()
+{
+  //let focus= document.getElementById("myInput")
+  inputElement.current.focus();
+}   
 
-// return (
-//   <>
-//   <input id ='myInput' type='text' ref={inputElement}></input>
+return (
+  <>
+  <input id ='myInput' type='text' ref={inputElement}></input>
 
-//   <button onClick={()=>getFocus()}>clicl me</button>
+  <button onClick={()=>getFocus()}>clicl me</button>
 
-//   </>
-// );
+  </>
+);
 
-// }
+}
 
-// export default App;
+export default App;
 
 */
 //----------------------------------------------
@@ -269,19 +270,20 @@ return state.map((todo) =>
 
 
 //---------------HOOKS-useContext- 1st problem solution-------------
- 
- 
+
+
+
 const UserContext =createContext()
 
 function App(){
   const [user,setUser]=useState("Shruti");
   return(
-    <>
+    <> 
     <UserContext.Provider value={user}>
-      <h1>{'Hello ${user}!'}</h1>
+      <h1>{'Hello '+user}</h1>
       <Component2 user={user}></Component2>
     </UserContext.Provider>
-    </>
+    </> 
   );
 }
 function Component2(){
@@ -295,7 +297,7 @@ function Component2(){
 function Component3(){ 
   return(
     <>
-    <h1>Component2</h1> 
+    <h1>Component3</h1> 
     <Component4/>
     </>
   );
@@ -305,14 +307,15 @@ function Component4(){
   return(
     <>
     <h1>Component4</h1>  
-    <h2>{'Hello${user} again!'}</h2>  
+    <h2>{'Hello '+user+' again!'}</h2>  
 
-    <Component3 />
-    </>
-  );
+   </>
+ );
 }
 
 export default App;
+
+
 
 //----------------------------------------------
 
@@ -321,11 +324,11 @@ export default App;
 
 /*
 
-function App(){
-  const [user,setUser]=useState("Shruti");
+function App(){ 
+  const [user,setUser]=useState("Shruti")
   return(
     <>
-    <h1>{'Hello ${user}!'}</h1> 
+    <h1>{'Hello' +user}</h1> 
     <Component2 user={user}></Component2>
     </>
   );
@@ -341,7 +344,7 @@ function Component2({user}){
 function Component3({user}){ 
   return(
     <>
-    <h1>Component2</h1> 
+    <h1>Component3</h1> 
     <Component4 user={user}/>
     </>
   );
@@ -350,9 +353,8 @@ function Component4({user}){
   return(
     <>
     <h1>Component4</h1>  
-    <h2>{'Hello${user} again!'}</h2>  
-
-    <Component3 user={user}/>
+    <h2>{'Hello '+user+' again!'}</h2>  
+ 
     </>
   );
 }
