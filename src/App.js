@@ -1,7 +1,8 @@
 import { type } from '@testing-library/user-event/dist/type';
 import './App.css';
 import React, {useState, useEffect, createContext, useContext, useRef, useReducer, Component } from 'react';
-import { render } from '@testing-library/react';
+//import { render } from '@testing-library/react';
+import useFetch from './hooks/useFetch'; 
   
 
  //*********Org.Prog.******  
@@ -19,6 +20,52 @@ export default App;
 
 //----------------------------------------------
 
+
+
+//-------------API JSON Example----------
+
+// const App = () =>
+// {
+//   //const[data,setData] = useState(null);
+//   const[data] = useFetch("/getproducts");
+//   console.log("Data:", data)
+
+//   return <div>
+//     { data && data.data.map( item =>{
+//       return <p key={item.id}>{item.title}</p>
+//     })
+//     }  
+//   </div>
+// }
+
+// export default App;
+
+
+//-------------API JSON Example without useFetch ----------
+
+const App = () =>
+{
+  const [data, setData] = useState(null);
+  useEffect(() =>
+  {
+    fetch("/getproducts")
+     .then((res) => res.json())
+     .then((data) => setData(data))
+     .then((data)=>{console.log(data)});
+  },[])
+
+return <div>
+    { data && data.data.map( item =>{
+       return <p key={item.id}>{item.title}</p>
+     })
+     }  
+   </div>
+}
+
+export default App;
+//-------------------------------------
+
+//-----------------------------------------
 
 // export default function App()
 // {
@@ -80,6 +127,7 @@ export default App;
   
  
 //-----------------------------------
+ 
 
 //-------------------- Hooks-useReducer solution--------------------------
  /*
@@ -150,120 +198,230 @@ return state.map((todo) =>
 ///--------------------------------------------
 
 // //-------------------- Hooks-useReducer prob. --------------------------
- 
-// var initialTodo =[
-// {
-//   id: 1,
-//   text: "Todo 1",
-//   completed: false,
-// },
-// {
-//   id: 2,
-//   text: "Todo 2",
-//   completed: false,
-// }
 
-// ]
-// function App()
-// {
-//   const [todo, setTodo] = useState([])
-//   if(todo.length === 0)
-//   {
-//     setTodo(initialTodo)
-//   }
-//   const handleComplete = (todoTemp) =>
-//   {
-//     setTodo(todo.map((todoListItem) =>
-//     {
-//       if(todoListItem.id == todoTemp.id)
-//       {
-//         return { ...todoListItem, completed: !todoTemp.completed}
-//       }
-//       else
-//       {
-//         return todoListItem
-//       }
-//     }))
-//   }
-//   console.log(todo)
+/*
+ 
+var initialTodo =[
+{
+  id: 1,
+  text: "Todo 1",
+  completed: false,
+},
+{
+  id: 2,
+  text: "Todo 2",
+  completed: false,
+}
+
+]
+function App()
+{
+  const [todo, setTodo] = useState([])
+  if(todo.length === 0)
+  {
+    setTodo(initialTodo)
+  }
+  const handleComplete = (todoTemp) =>
+  {
+    setTodo(todo.map((todoListItem) =>
+    {
+      if(todoListItem.id == todoTemp.id)
+      {
+        return { ...todoListItem, completed: !todoTemp.completed}
+      }
+      else
+      {
+        return todoListItem
+      }
+    }))
+  }
+  console.log(todo)
 
   
 
-// return  <> 
-// <div>
-//   {todo.map((todo)=>
-//   (
-//   <label>
-//     <input
-//     type='checkbox' checked={todo.completed} onChange={()=> handleComplete(todo)} />
-//     {todo.text}
-//     </label>
-//     ))} 
-//   </div>
-//   </>
+return  <> 
+<div>
+  {todo.map((todo)=>
+  (
+  <label>
+    <input
+    type='checkbox' checked={todo.completed} onChange={()=> handleComplete(todo)} />
+    {todo.text}
+    </label>
+    ))} 
+  </div>
+  </>
      
-//   }
+  }
 
-// export default App;
+export default App;
 
-
- //-------------------- Hooks-useRef 2nd prob. --------------------------
-/*
-
-// function App()
-// {
+ */
 
 
-//   const [inputValue , setInputValue ] = useState("");
-//  const previousInputValue = useRef("");
-//  useEffect(() => {
-//  previousInputValue .current = inputValue ;
-//  }, [inputValue ]);
+ //-------------------- Hooks-useRef Problem 3 - Tracking State changes --------------------------
 
+ /*
 
-//  return (
-//  <>
-//  <input type="text" value={inputValue }
-//  onChange={(e) => setInputValue (e.target.value)}
-//  />
-//  <h2>Current Value: {inputValue }</h2>
-//  <h2>Previous Value: {previousInputValue .current}</h2>
-//  </>
-//  );
-
-
-// }
-// export default App;
-    
-//-------------------- Hooks-useRef 1st prob. - Counting renders without re-render infinite loop --------------------------
- 
 function App()
 {
+
+
+  const [inputValue , setInputValue ] = useState("");
+ const previousInputValue = useRef("");
+ useEffect(() => {
+ previousInputValue .current = inputValue ;
+ }, [inputValue ]);
+
+
+ return (
+ <>
+ <input type="text" value={inputValue }
+ onChange={(e) => setInputValue (e.target.value)}
+ />
+ <h2>Current Value: {inputValue }</h2>
+ <h2>Previous Value: {previousInputValue .current}</h2>
+ </>
+ );
+
+
+}
+export default App;
+
+*/
+ 
+
+//---------------------- HOOKS------------------------
+
+//------------------------- Hooks-useRef-------------------------------------
+
+//-------------------- Hooks-useRef 2nd prob. - Solution. - Accessing DOM Elements ---------------
+
+/*
+
+function App() {
   const inputElement = useRef();
+  function getFocus() {
+    inputElement.current.focus()
+
+  }
+
+  return (
+    <>
+      <input
+        type='text'
+        id='myInput'
+        ref={inputElement}>
+      </input>
+      <button onClick={() => getFocus()}>Click Me</button>
+    </>
+  )
+}
+
+export default App;
+
+*/
+
+//----------------------------------------------
+
+
+//-------------------- Hooks-useRef 2nd prob. - Accessing DOM Elements ---------------
+
+/*
+
+function App(){
+ 
 function getFocus()
 {
-  //let focus= document.getElementById("myInput")
-  inputElement.current.focus();
-}   
+  let focus = document.getElementById("myInput")
+  focus.focus()
+}
 
-return (
+  return(
+    <>
+      <input
+        type='text'
+        id='myInput'>
+      </input>
+      <button onClick={() => getFocus()}>click me</button>
+
+    </>
+  )
+}
+
+export default App;
+
+*/
+
+//----------------------------------------------
+
+//-------------------- Hooks-useRef 1st prob- Solution. - Counting renders without re-render infinite loop ---------------
+
+/*
+
+function App(){
+  const [inputValue, setInputValue] = useState("");
+  const count =useRef(0);
+  useEffect(()=>{
+    count.current = count.current + 1;
+    console.log(count.current)
+  });
+  
+  return(
+    <>
+    <input
+    type='text'
+    value={inputValue}
+    onChange={(e)=>setInputValue(e.target.value)}
+    />
+    <h1>Render Count:{count.current}</h1>
+    </>
+  );
+  
+  }
+  
+  export default App;
+  
+*/
+
+//----------------------------------------------
+
+
+//-------------------- Hooks-useRef 1st prob. - Counting renders without re-render infinite loop ---------------
+
+/*
+
+function App(){
+const [inputValue, setInputValue] = useState("");
+let count = 0;
+useEffect(()=>{
+  count=count+1;
+  console.log(count)
+});
+
+return(
   <>
-  <input id ='myInput' type='text' ref={inputElement}></input>
-
-  <button onClick={()=>getFocus()}>clicl me</button>
-
+  <input
+  type='text'
+  value={inputValue}
+  onChange={(e)=>setInputValue(e.target.value)}
+  />
+  <h1>Render Count:{count.current}</h1>
   </>
 );
+  
 
 }
 
 export default App;
 
 */
-//----------------------------------------------
- 
 
-//---------------------- HOOKS------------------------
+//----------------------------------------------
+
+
+//----------------------------------------------
+
 
 
 //---------------HOOKS-useContext-------------
@@ -271,7 +429,7 @@ export default App;
 
 //---------------HOOKS-useContext- 1st problem solution-------------
 
-
+/*
 
 const UserContext =createContext()
 
@@ -315,7 +473,7 @@ function Component4(){
 
 export default App;
 
-
+*/
 
 //----------------------------------------------
 
