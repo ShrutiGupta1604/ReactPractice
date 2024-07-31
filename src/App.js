@@ -1,22 +1,54 @@
-import { type } from '@testing-library/user-event/dist/type';
+// import { type } from '@testing-library/user-event/dist/type';
 import './App.css';
-import React, {useState, useEffect, createContext, useContext, useRef, useReducer, Component } from 'react';
+// import React, {useState, useEffect, createContext, useContext, useRef, useReducer, Component } from 'react';
 //import { render } from '@testing-library/react';
-import useFetch from './hooks/useFetch'; 
-  
+// import useFetch from './hooks/useFetch'; 
 
- //*********Org.Prog.******  
-/*
+//====-for socket-============
+import socketID from 'socket.io-client';
+
+const socket = socketID.connect('http://127.0.0.1:8081')
+
+
+
+
 function App() 
 {
+
+ function clickButton()
+ {
+  socket.emit('newuser',{userName:'shruti',socketID}, socket.id)
+
+ } 
+
+
   return (
     <div className="App">
     <h1>Hello React</h1>
+    <button  onClick={clickButton}> click me </button>
+
+
+
     </div>  
   );
 }
 export default App;
-*/
+
+
+
+
+ //*********Org.Prog.******  
+
+// function App() 
+// {
+//   return (
+//     <div className="App">
+//     <h1>Hello React</h1>
+//     </div>  
+//   );
+// }
+// export default App;
+
 
 //----------------------------------------------
 
@@ -43,26 +75,26 @@ export default App;
 
 //-------------API JSON Example without useFetch ----------
 
-const App = () =>
-{
-  const [data, setData] = useState(null);
-  useEffect(() =>
-  {
-    fetch("/getproducts")
-     .then((res) => res.json())
-     .then((data) => setData(data))
-     .then((data)=>{console.log(data)});
-  },[])
+// const App = () =>
+// {
+//   const [data, setData] = useState(null);
+//   useEffect(() =>
+//   {
+//     fetch("/getproducts")
+//      .then((res) => res.json())
+//      .then((data) => setData(data))
+//      .then((data)=>{console.log(data)});
+//   },[])
 
-return <div>
-    { data && data.data.map( item =>{
-       return <p key={item.id}>{item.title}</p>
-     })
-     }  
-   </div>
-}
+// return <div>
+//     { data && data.data.map( item =>{
+//        return <p key={item.id}>{item.title}</p>
+//      })
+//      }  
+//    </div>
+// }
 
-export default App;
+// export default App;
 //-------------------------------------
 
 //-----------------------------------------
